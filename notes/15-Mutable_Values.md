@@ -85,6 +85,12 @@ create new lists  containing existing  elements
 
  slice assignment  replaces a slice with  new values
 
+#### Assume that before each example below we execute: 
+
+s = [2, 3] 
+
+t = [5, 6]
+
 <img src="image/image-20241107164051382.png" alt="image-20241107164051382" style="zoom:67%;" />
 
 ###  pop
