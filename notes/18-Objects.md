@@ -113,6 +113,15 @@ Looking up an attribute name in an object may return:
 
 <img src="images/image-20241211235812206.png" alt="image-20241211235812206" style="zoom:50%;" />
 
+#### Assignment to Attributes
+
+Assignment statements with a dot expression on their left-hand side affect attributes for  the object of that dot expression
+
+- If the object is an instance, then assignment sets an instance attribute 
+- If the object is a class, then assignment sets a class attribute
+
+
+
 ### Methods
 
  Methods are functions defined in the suite of a class statement
@@ -146,3 +155,11 @@ Dot notation automatically supplies the first argument to a method
 <class 'method'>
 ```
 
+### Terminology: Attributes, Functions, and Methods
+
+ All objects have attributes, which are name-value pairs  
+Classes are objects too, so they have attributes  
+Instance attribute: attribute of an instance  
+Class attribute: attribute of the class of an instance
+
+<img src="images/image-20241212205755633.png" alt="image-20241212205755633" style="zoom:50%;" />
