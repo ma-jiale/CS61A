@@ -116,6 +116,12 @@ def balanced(m):
     True
     """
     "*** YOUR CODE HERE ***"
+    if is_planet(m):
+        return True
+    if total_mass(end(left(m))) * length(left(m)) == total_mass(end(right(m))) * length(right(m)):
+        return balanced(end(left(m))) and balanced(end(right(m)))
+    else:
+        return False
 
 
 def berry_finder(t):
@@ -136,6 +142,16 @@ def berry_finder(t):
     True
     """
     "*** YOUR CODE HERE ***"
+    if not is_tree(t):
+        return False
+    if label(t) == 'berry':
+        return True
+    else:
+        for b in branches(t):
+            if berry_finder(b):
+                return True
+        return False
+
 
 
 HW_SOURCE_FILE=__file__
@@ -151,6 +167,13 @@ def max_path_sum(t):
     17
     """
     "*** YOUR CODE HERE ***"
+    if is_leaf(t):
+        return label(t)
+    max = 0
+    for b in branches(t):
+        if label(t) + max_path_sum(b) > max:
+            max = label(t) + max_path_sum(b)
+    return max
 
 
 def mobile(left, right):
