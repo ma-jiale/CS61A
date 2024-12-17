@@ -142,8 +142,6 @@ def berry_finder(t):
     True
     """
     "*** YOUR CODE HERE ***"
-    if not is_tree(t):
-        return False
     if label(t) == 'berry':
         return True
     else:
