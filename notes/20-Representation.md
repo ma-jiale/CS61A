@@ -91,13 +91,9 @@ repr invokes a zero-argument method \__repr__ on its argument
 
  The behavior of str is also complicated: 
 
-- An instance attribute called \__repr__ is ignored
-- If no \__repr__ attribute is found, uses repr string 
+- An instance attribute called \__str__ is ignored
+- If no \__str__ attribute is found, uses repr string 
 -  (By the way, str is a class, not a function) 
-
-```
-
-```
 
 ### Interfaces
 
@@ -130,3 +126,24 @@ Adding instances of user-defined classes invokes either the \__add__ or \_\_radd
 Type Dispatching: Inspect the type of an argument in order to select behavior
 
 Type Coercion: Convert one value to match the type of another
+
+### Drilling Class
+
+```
+class Kangaroo:
+    def __init__(self):
+        self.pouch_content = []
+    
+    def put_in_pouch(self, s):
+        if s not in self.pouch_content:
+            self.pouch_content.append(s)
+        else:
+            print('object already in pouch')
+
+    def __str__(self):
+        if len(self.pouch_content) == 0:
+            return 'The Kangaroo\'s pouch is empty.'
+        else:
+            return f'The Kangaroo\'s pouch contains {self.pouch_content}'
+```
+
