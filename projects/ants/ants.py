@@ -357,6 +357,15 @@ class QueenAnt(ScubaThrower):  # You should change this line
         ScubaThrower.__init__(self, armor)
         # END Problem EC
 
+    def double_damage_behind_me(self, place):
+        if place.exit == None:
+            return
+        else:
+            if place.exit.ant and not hasattr(place.exit.ant, "is_damage_doubled"):
+                place.exit.ant.damage = place.exit.ant.damage * 2
+                place.exit.ant.is_damage_doubled = True
+            self.double_damage_behind_me(place.exit)
+
     def action(self, gamestate):
         """A queen ant throws a leaf, but also doubles the damage of ants
         in her tunnel.
@@ -365,7 +374,11 @@ class QueenAnt(ScubaThrower):  # You should change this line
         """
         # BEGIN Problem EC
         "*** YOUR CODE HERE ***"
-        ScubaThrower.action(self, gamestate)
+        if self.is_impostor == True:
+            self.reduce_armor(self.armor)
+        else:
+            ScubaThrower.action(self, gamestate)
+            self.double_damage_behind_me(self.place)
         # END Problem EC
 
     def reduce_armor(self, amount):
@@ -374,8 +387,14 @@ class QueenAnt(ScubaThrower):  # You should change this line
         """
         # BEGIN Problem EC
         "*** YOUR CODE HERE ***"
+        ScubaThrower.reduce_armor(self, amount)
+        if self.armor <= 0 and self.is_impostor == False:
+            bees_win()
         # END Problem EC
 
+    def remove_from(self, place):
+        if self.is_impostor == True:
+            ScubaThrower.remove_from(self, place)
 
 
 class AntRemover(Ant):
