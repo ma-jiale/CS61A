@@ -670,14 +670,14 @@ class LaserAnt(ThrowerAnt):
         ThrowerAnt.__init__(self, armor)
         self.insects_shot = 0
 
-    # def calculate_distance(self, place):
-    #     """计算在LaserAnt右方的某一位置距离LaserAnt的距离"""
-    #     if place is self.place:
-    #         return 0
-    #     else:
-    #         return 1 + self.calculate_distance(place.exit)
 
     def insects_in_front(self, beehive):
+        """
+        it takes in beehive (the current Hive), 
+        and returns a dictionary where each key is an Insect and
+        each corresponding value is the distance (in places) that 
+        that Insect is away from LaserAnt.
+        """
         # BEGIN Problem Optional 5
         distance = 0
         cur_place = self.place
@@ -693,6 +693,7 @@ class LaserAnt(ThrowerAnt):
         # END Problem Optional 5
 
     def calculate_damage(self, distance):
+        """based on two conditions to calculate_damage to a insect"""
         # BEGIN Problem Optional 5
         damage = self.damage - distance * 0.2 - self.insects_shot * 0.05
         return max(damage, 0)
