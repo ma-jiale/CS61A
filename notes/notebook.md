@@ -31,7 +31,11 @@
 
 ![image-20240910214829583](image/image-20240910214829583.png)
 
-## LAB 00: Getting Started
+
+
+
+
+## LAB 00.Getting Started
 
 ### 安装终端
 
@@ -116,7 +120,7 @@ Here is a summary of the commands we just went over for your reference:
 
 ### Python基础
 
-#### 表达式和语句
+#### 表达式和语句 expressions and statements.
 
 Programs are made up of expressions and statements. 
 
@@ -124,7 +128,7 @@ An *expression*(表达式) is a piece of code that evaluates to some value
 
 a *statement*(语句) is one or more lines of code that make something happen in a program.
 
-#### 原语表达式
+#### 原语表达式 Primitive expressions
 
 Primitive expressions(原语表达式) only take one step to evaluate. These include numbers and booleans, which just evaluate to themselves.
 
@@ -135,7 +139,6 @@ Primitive expressions(原语表达式) only take one step to evaluate. These inc
 12.5
 >>> True
 True
-Arith
 ```
 
 #### 算术表达式
@@ -254,9 +257,13 @@ Got:
 
 检测出错误结果2020
 
-## Lecture 2 Functions/函数
 
-### 表达式
+
+
+
+## Lecture 2.Functions/函数
+
+### 表达式 Expressions
 
 一个表达式描述一个计算过程，并且求值。
 
@@ -304,7 +311,11 @@ Got:
 
 ![image-20240907114232331](image/image-20240907114232331.png)
 
-## Lecture 3 Control
+
+
+
+
+## Lecture 3.Control
 
 ### print and None
 
@@ -431,7 +442,11 @@ while <expression>:
 1. 求解头部的表达式。
 2. 如果是真值，则执行后面的句体，然后返回第 1 步。
 
-## Lecture 4 Higher-Order Functions
+
+
+
+
+## Lecture 4.Higher-Order Functions
 
 ### 设计函数 Designing Functions
 
@@ -529,6 +544,10 @@ True
 
 ![image-20240910230113883](image/image-20240910230113883.png)
 
+
+
+
+
 ## Lecture 5 Environments
 
 ### Environments for Higher-Order Functions
@@ -577,7 +596,11 @@ def curry2(f):
     return h
 ```
 
-## Design
+
+
+
+
+## Lecture 06.Design
 
 ### Functional Abstractions
 
@@ -587,7 +610,19 @@ def curry2(f):
 
 ![image-20240918093924835](image/image-20240918093924835.png)
 
-## Recursion
+
+
+## Lecture 07.Function Examples
+
+### Function Decorators
+
+![image-20251020171455189](images/image-20251020171455189.png)
+
+
+
+
+
+## Lecture 08.Recursion
 
 ### Recursive Functions
 
@@ -605,11 +640,19 @@ def curry2(f):
 
 循环是递归的一种特殊情况
 
-## Tree Recursion
+
+
+
+
+## Lecture 09.Tree Recursion
 
 Tree-shaped processes arise whenever executing the body of a recursive function makes more  than one recursive call
 
-## Containers
+
+
+
+
+## Lecture 10.Containers
 
 ### Sequences
 
@@ -630,8 +673,10 @@ A `list` value is a sequence that can have arbitrary length.
 list literal evaluates to a `list` instance
 
 ```python
+>>> [1, 2, 3, 4]
 [1, 2, 3, 4]
-[1+1, 2*2*2, 2//2, 3**2]
+>>> [1+1, 2*2*2, 2//2, 3**2]
+[2, 8, 1, 9]
 ```
 
 #### The number of elements
@@ -661,6 +706,7 @@ my_list_from_iterable = list((1, 2, 3))  # 从元组创建列表
 #### Concatenation and repetition
 
 ```python
+>>> digits = [1, 8, 2, 8]
 >>> [2, 7] + digits * 2
 [2, 7, 1, 8, 2, 8, 1, 8, 2, 8]
 
@@ -696,6 +742,8 @@ This pattern of binding multiple names to multiple values in a fixed-length sequ
 
 <img src="image/image-20241001111153813.png" alt="image-20241001111153813" style="zoom: 67%;" />
 
+
+
 ### Ranges
 
 A range is a sequence of consecutive integers.
@@ -709,6 +757,8 @@ range(1, 10)
 >>> list(range(5, 8))
 [5, 6, 7]
 ```
+
+
 
 ### Sequence processing
 
@@ -791,7 +841,7 @@ Read more: import this."""
 
 #### String behaviour 
 
-Strings satisfy the two basic conditions of a sequence that we introduced at the beginning of this section: they have a length and they support element selection.
+Strings satisfy the two basic conditions of a sequence that we introduced at the beginning of this section: **they have a length and they support element selection**.
 
 ```python
 >>> city = 'Berkeley'
@@ -803,14 +853,18 @@ Strings satisfy the two basic conditions of a sequence that we introduced at the
 
 #### **Membership**
 
-membership operator `in`  matches substrings rather than elements.
+membership operator `in`  matches **substrings** rather than elements.
 
 ```python
 >>> 'here' in "Where's Waldo?"
 True
 ```
 
-## Data Abstraction
+
+
+
+
+## Lecture 11.Data Abstraction
 
 将**“数据表示”与“数据处理”**的程序隔离的通用技术是一种强大的设计方法，称为数据抽象。
 数据抽象会使程序更易于设计、维护和修改。
@@ -891,11 +945,13 @@ Evaluating a dictionary comprehension creates a new dictionary object.
 
 <img src="image/image-20241006113157127.png" alt="image-20241006113157127" style="zoom:67%;" />
 
-## TREE
+
+
+## Lecture12.TREES
 
 ### The Closure Property of Data Types
 
-- A method for combining data values satisfies the closure property if:  The result of combination can itself be combined using the same method  
+- In general, a method for combining data values has a **closure property** if the result of combination can itself be combined using the same method. it means: *whenever you combine two things by this method from your set, the result is still in the same set and can be combined again in the same way.*  
 - Closure is powerful because it permits us to create hierarchical structures  
 - Hierarchical structures are made up of parts, which themselves are made up  of parts, and so on
 
@@ -919,4 +975,782 @@ Each box either contains a primitive value or points to a compound value
 
 #### Tree Processing Uses Recursion
 
-​	
+
+
+
+
+## Lecture 15.Mutable Values
+
+### Objects
+
+![image-20241107161842198](images/image-20241107161842198.png)
+
+
+
+### Representing Strings
+
+#### the ASCII Standard
+
+American Standard Code for Information Interchange
+
+![image-20241107162136386](images/image-20241107162136386.png)
+
+### the Unicode Standard
+
+<img src="image/image-20241107162224193.png" alt="image-20241107162224193" style="zoom: 67%;" />
+
+
+
+### Tuples
+
+A tuple, an instance of the built-in `tuple` type, is an immutable sequence. 
+
+Tuples are created using a tuple literal that separates element expressions by commas. 
+
+```python
+>>> 1, 2 + 3
+(1, 5)
+>>> ()    # 0 elements
+()
+>>> (10,) # 1 element
+(10,)
+```
+
+Parentheses are optional but used commonly in practice. 
+
+```python
+>>> (1, 2 + 3)
+(1, 5)
+```
+
+Any objects can be placed within tuples.
+
+```python
+>>> ("the", 1, ("and", "only"))
+('the', 1, ('and', 'only'))
+```
+
+Tuples are used implicitly in multiple assignment. An assignment of two values to two names creates a two-element tuple and then unpacks it.
+
+```python
+a, b = 1, 2
+```
+
+
+
+### Mutation
+
+#### Identity Operators
+
+<img src="image/image-20241107163143550.png" alt="image-20241107163143550" style="zoom:67%;" />
+
+### Mutable Default Arguments are Dangerous
+
+**A default argument value is part of a function value, not generated by a call**
+
+
+
+### Lists Mutation
+
+#### append
+
+ add one  element to a list
+
+#### extend 
+
+add all  elements in one list  to another list
+
+#### addition & slicing
+
+create **new** lists  containing existing  elements
+
+#### the list function
+
+ The list function  also creates a **new**  list containing  existing elements
+
+#### slice assignment 
+
+ slice assignment  replaces a slice with  new values
+
+
+
+Assume that before each example below we execute: 
+
+s = [2, 3] 
+
+t = [5, 6]
+
+<img src="image/image-20241107164051382.png" alt="image-20241107164051382" style="zoom:67%;" />
+
+####  pop
+
+ pop removes & returns  the last element
+
+#### remove
+
+remove removes the  first element equal  to the argument
+
+#### slice assignment
+
+ slice assignment can  remove elements from  a list by assigning  [] to a slice
+
+<img src="image/image-20241107164218801.png" alt="image-20241107164218801" style="zoom:67%;" />
+
+
+
+
+
+## Lecture 16.Mutable Functions
+
+### Mutable Function
+
+A function with behavior that varies over time
+
+#### Execution rule for assignment statements
+
+1. Evaluate all expressions right of =, from left to right  
+2. Bind the names on the left to the resulting values in the **current frame**
+
+#### Non-Local Assignment
+
+<img src="image/image-20241113125459305.png" alt="image-20241113125459305" style="zoom:67%;" />
+
+#### Python Particulars
+
+Python pre-computes which frame contains each name before executing the body of a function.  Within the body of a function, **all instances of a name must refer to the same frame**.
+
+if we don't use nonlocal statement, a weird error will occur.
+
+<img src="image/image-20241113125608813.png" alt="image-20241113125608813" style="zoom:67%;" />
+
+#### Referential Transparency, Lost
+
+ Expressions are **referentially transparent** if substituting an expression with its value  does not change the meaning of a program.
+
+Mutation operations violate the condition of referential transparency because they do  more than just return a value; they **change the environment**.
+
+
+
+
+
+## Lecture 17.Iterators
+
+### Iterators
+
+Python and many other programming languages provide a unified way to process elements of a container value sequentially, called an **iterator**. An *iterator* is an object that provides sequential access to values, one by one.
+
+The iterator abstraction has two components:
+
+- a mechanism for retrieving the next element in the sequence being processed
+
+- a mechanism for signaling that the end of the sequence has been reached and no further elements remain.
+
+there are two built-in function in Python to implement the two components:
+
+<img src="image/image-20241204212632161.png" alt="image-20241204212632161" style="zoom:50%;" />
+
+
+
+### Iterabe Value
+
+**Iterabe value** is container can provide an iterator that provides access to its elements in order.
+
+Iterables include sequence values such as strings and tuples, as well as other containers such as sets and dictionaries. Iterators are also iterables, because they can be passed to the `iter` function.
+
+
+
+### Dictionary Iteration
+
+Even unordered collections such as **dictionaries** must define an ordering over their contents when they produce iterators.
+
+<img src="image/image-20241204213124389.png" alt="image-20241204213124389" style="zoom:50%;" />
+
+
+
+### For Statements
+
+The `for` statement in Python operates on iterators. 
+
+Objects are *iterable* (an interface) if they have an `__iter__` method that returns an *iterator*. Iterable objects can be the value of the `<expression>` in the header of a `for` statement:
+
+```python
+for <name> in <expression>:
+    <suite>
+```
+
+The `for` statement can be implemented by `while`, assignment, and `try` statements.
+
+```python
+>>> items = counts.__iter__()
+>>> try:
+        while True:
+            item = items.__next__()
+            print(item)
+    except StopIteration:
+        pass
+```
+
+equal
+
+```python
+>>> for item in items:
+		print(item)
+```
+
+
+
+### Built-in Functions for Iteration
+
+ Many built-in Python sequence operations return iterators that compute results lazily
+
+<img src="image/image-20241204213455594.png" alt="image-20241204213455594" style="zoom: 50%;" />
+
+
+
+### Generators and Generator Functions
+
+<img src="images/image-20251022090544105.png" alt="image-20251022090544105" style="zoom:50%;" />
+
+A **generator function** is a function that yields values instead of returning them  
+
+A normal function returns once; a generator function can yield multiple times  
+
+A generator is an iterator created automatically by calling a generator function  
+
+When a generator function is called, it returns a generator that iterates over its yields
+
+
+
+#### Generators can Yield from Iterators
+
+ A yield from statement yields all values from an iterator or iterable (Python 3.3)
+
+<img src="image/image-20241204213644045.png" alt="image-20241204213644045" style="zoom: 67%;" />
+
+
+
+
+
+## Lecture 18.Objects
+
+### Object-Oriented Programming
+
+ A method for organizing programs
+
+- Data abstraction 
+- Bundling together information and related behavior 
+
+A metaphor for computation using distributed state
+
+- Each object has its own local state
+- Each object also knows how to manage its own local state,  based on method calls
+- Method calls are messages passed between objects
+- Several objects may all be instances of a common type
+- Different types may relate to each other
+
+Specialized syntax & vocabulary to support this metaphor
+
+
+
+### Classes
+
+ A class serves as a template for its instances
+
+<img src="images/image-20241211234424650.png" alt="image-20241211234424650" style="zoom:50%;" />
+
+
+
+### Class Statements
+
+ A class statement creates a new class and binds that class to  <name\> in the first frame of  the current environment
+Assignment & def statements in <suite\> create attributes of the class (not names in frames)
+
+<img src="images/image-20241211234528957.png" alt="image-20241211234528957" style="zoom:50%;" />
+
+
+
+### Object Construction
+
+When a class is called: 
+
+1. A new instance of that class is created:
+2. The __init\_\_ method of the class is called with the new object as its first  argument (named self), along with any additional arguments provided in the  call expression
+3. 
+
+### Object Identity
+
+Every object that is an instance of a user-defined class has a unique identity
+
+Object identity is compared using the `is` and `is not` operators.
+
+```python
+>>> a is a
+True
+>>> a is not b
+True
+```
+
+Binding an object to a new name using assignment does not create a new object
+
+```python
+>>> c = a 
+>>> c is a 
+True
+```
+
+
+
+### Dot Expressions
+
+Objects receive messages via dot notation  
+
+Dot notation accesses attributes of the instance or its class
+
+```python
+<expression> . <name>
+# The <expression> can be any valid Python expression
+# The <name> must be a simple name
+```
+
+Evaluates to the value of the attribute looked up by <name\> in the object  that is the value of the <expression\>
+
+To evaluate a dot expression:  
+
+1. Evaluate the <expression\> to the left of the dot, which yields the object of  the dot expression  
+2. <name\> is matched against the instance attributes of that object; if an  attribute with that name exists, its value is returned  
+3. If not, <name\> is looked up in the class, which yields a class attribute value  
+4. That value is returned unless it is a function, in which case a bound method is returned instead
+
+
+
+### Attributes
+
+#### Accessing Attributes
+
+Using `getattr`, we can look up an attribute using a string
+
+getattr and dot expressions look up a name in the same way
+
+```python
+>>> getattr(spock_account, 'balance')
+10
+>>> spock_account.balance
+10
+```
+
+We can also test whether an object has a named attribute with `hasattr`.
+
+```python
+>>> hasattr(spock_account, 'deposit')
+True
+```
+
+Looking up an attribute name in an object may return: 
+
+- One of its instance attributes, or 
+- One of the attributes of its class chain
+
+#### Class Attributes
+
+ Class attributes are "shared" across all instances of a class because they are attributes  of the class, not the instance
+
+<img src="images/image-20241211235812206.png" alt="image-20241211235812206" style="zoom:50%;" />
+
+#### Assignment to Attributes
+
+Assignment statements with a dot expression on their left-hand side affect attributes for the object of that dot expression
+
+- If the object is an instance, then assignment sets an instance attribute 
+- If the object is a class, then assignment sets a class attribute
+
+
+
+### Methods
+
+ Methods are functions defined in the suite of a class statement
+
+For methods, these def statements create function objects as always, but their names are bound as attributes of the class
+
+#### Invoking Methods
+
+All invoked methods have access to the object via the self parameter, and so they can all  access and manipulate the object's state
+
+<img src="images/image-20241211235245833.png" alt="image-20241211235245833" style="zoom:50%;" />
+
+Dot notation automatically supplies the first argument to a method
+
+<img src="images/image-20241211235312197.png" alt="image-20241211235312197" style="zoom:50%;" />
+
+#### Methods and Functions
+
+ Python distinguishes between:  
+
+- Functions, which we have been creating since the beginning of the course, and   
+
+- Bound methods, which couple together a function and the object on which that method will be invoked
+
+ Object  +  Function  =  Bound Method
+
+```python
+>>> type(Account.deposit)
+<class 'function'>
+>>> type(spock_account.deposit)
+<class 'method'>
+```
+
+### Terminology: Attributes, Functions, and Methods
+
+ All objects have attributes, which are name-value pairs  
+Classes are objects too, so they have attributes  
+Instance attribute: attribute of an instance  
+Class attribute: attribute of the class of an instance
+
+<img src="images/image-20241212205755633.png" alt="image-20241212205755633" style="zoom:50%;" />
+
+
+
+
+
+## Lecture 19.Inheritance
+
+### Inheritance
+
+ Inheritance is a technique for relating classes together
+
+A common use: Two similar classes differ in their degree of **specialization**  
+
+The specialized class may have the same attributes as the general class,  along with some special-case behavior
+
+```python
+ class <Name>(<Base Class>): 
+    <suite>
+```
+
+ Conceptually, the new subclass **inherits attributes** of its **base class **
+
+The subclass may **override** certain inherited attributes
+
+Using inheritance, we implement a subclass by specifying its **differences**  from the the base class
+
+### Looking Up Attribute Names on Classes
+
+ Base class attributes aren't copied into subclasses!
+
+ To look up a name in a class recursively: 
+
+1. If it names an attribute in the class, return the attribute value.
+2. Otherwise, look up the name in the base class, if there is one.
+
+### Designing for Inheritance
+
+**Don't repeat** yourself; use existing implementations  
+
+Attributes that have been overridden are still accessible via class objects
+
+```python
+Account.withdraw(self, amount + self.withdraw_fee)
+```
+
+Look up attributes on instances whenever possible
+
+### Inheritance and Composition
+
+-  Object-oriented programming shines when we adopt the metaphor 
+-  Composition is best for representing has-a relationships 
+
+### Multiple Inheritance
+
+ A class may inherit from multiple base classes in Python.
+
+```python
+class AsSeenOnTVAccount(CheckingAccount, SavingsAccount): 
+    def __init__(self, account_holder): 
+        self.holder = account_holder 
+        self.balance = 1                 # A free dollar!
+```
+
+<img src="images/image-20241212211045548.png" alt="image-20241212211045548" style="zoom:50%;" />
+
+Inheritance can be complicated, so don't overuse it!
+
+
+
+
+
+## Lecture 20.Representation
+
+### String Representations
+
+An object value should behave like the kind of data it is meant to represent  
+
+For instance, by producing a string representation of itself  
+
+Strings are important: they represent language and programs 
+
+In Python, all objects produce two string representations: 
+
+#### repr string
+
+repr string is a Python-interpretable expression
+
+Where possible, the `repr` function returns a Python expression that evaluates to an equal object. 
+
+The docstring for *repr* explains this property:
+
+> repr(object) -> string # 调用这个方程会返回一个Python 可解释的表达式字符串。
+>
+> Return the canonical string representation of the object.
+>
+> For most object types, eval(repr(object)) == object. # 对于大多数类型的对象而言，该表达式字符串的求值结果与原对象相同。
+
+The result of calling repr on a value is what Python prints in an interactive session
+
+```
+>>> 12e12 
+12000000000000.0 
+>>> print(repr(12e12)) 
+12000000000000.0
+```
+
+ Some objects do not have a simple Python-readable string, like some functions
+
+```
+>>> repr(min) 
+'<built-in function min>'
+```
+
+#### str string
+
+str string is human-interpretable text
+
+The result of calling str on the value of an expression is what Python prints using the print function
+
+```
+>>> from fractions import Fraction 
+>>> half = Fraction(1, 2) 
+>>> repr(half) 
+'Fraction(1, 2)' 
+
+>>> str(half) 
+'1/2'
+>>> print(half) 
+1/2
+```
+
+### Polymorphic Functions  多重表示函数
+
+ A function that applies to many (poly) different forms (morph) of data 
+
+str and repr are both polymorphic; they apply to any object 
+
+repr invokes a zero-argument method \__repr__ on its argument
+
+```
+ >>> half.__repr__() 
+'Fraction(1, 2)'
+```
+
+ str invokes a zero-argument method\__repr__ on its argument
+
+```
+ >>> half.__str__() 
+'1/2'
+```
+
+#### Implementing repr and str
+
+ The behavior of repr is slightly more complicated than invoking \__repr__ on its argument: 
+
+- An instance attribute called \__repr__ is **ignored**! Only class attributes are found 
+
+```
+ def repr(x): 
+    return type(x).__repr__(x)
+```
+
+ The behavior of str is also complicated: 
+
+- An instance attribute called \__str__ is ignored
+- If no \__str__ attribute is found, uses repr string 
+- (By the way, str is a class, not a function) 
+
+### Interfaces
+
+Message passing: Objects interact by looking up attributes on each other (passing messages)  The attribute look-up rules allow different data types to respond to the same message 
+
+A shared message (attribute name) that elicits similar behavior from different object  classes is a powerful method of abstraction
+
+An interface is a set of shared messages, along with a specification of what they mean
+
+##### Example:
+
+Classes that implement \_\_repr__ and \_\_str__ methods that return Python-interpretable and  human-readable strings implement an interface for producing string representations
+
+### Special Method Names 专用方法名称
+
+ Certain names are special because they have built-in behavior  
+
+These names always start and end with two underscores
+
+<img src="images/image-20241219235555245.png" alt="image-20241219235555245" style="zoom:50%;" />
+
+#### Addition Methods
+
+Adding instances of user-defined classes invokes either the \__add__ or \_\_radd__ method
+
+### Generic Functions 泛型函数
+
+ A polymorphic function might take two or more arguments of different types 
+
+Type Dispatching: Inspect the type of an argument in order to select behavior
+
+Type Coercion: Convert one value to match the type of another
+
+### Drilling Class
+
+```
+class Kangaroo:
+    def __init__(self):
+        self.pouch_content = []
+    
+    def put_in_pouch(self, s):
+        if s not in self.pouch_content:
+            self.pouch_content.append(s)
+        else:
+            print('object already in pouch')
+
+    def __str__(self):
+        if len(self.pouch_content) == 0:
+            return 'The Kangaroo\'s pouch is empty.'
+        else:
+            return f'The Kangaroo\'s pouch contains {self.pouch_content}'
+```
+
+
+
+
+
+## Lecture 21.Composition
+
+### Linked Lists 
+
+#### Linked List Structure
+
+ A linked list is either empty or a first value and the rest of the linked list
+
+![image-20251022104015996](images/image-20251022104015996.png)
+
+
+
+#### Linked List Class
+
+```python
+>>> class Link:
+        """a linked list"""
+        empty = ()
+        def __init__(self, first, rest=()):
+            assert rest == Link.empty or isinstance(rest, Link)
+            self.first = first
+            self.rest = rest
+
+```
+
+
+
+#### function isinstance 
+
+```python
+>>> help(isinstance)
+Help on built-in function isinstance in module builtins:
+
+isinstance(obj, class_or_tuple, /)
+    Return whether an object is an instance of a class or of a subclass thereof.
+
+    A tuple, as in ``isinstance(x, (A, B, ...))``, may be given as the target to
+    check against. This is equivalent to ``isinstance(x, A) or isinstance(x, B)
+    or ...`` etc.
+```
+
+
+
+#### Linked List Processing
+
+Example: Selector and Length
+
+```python
+        def __getitem__(self, i):
+            if i == 0:
+                return self.first
+            else:
+                return self.rest[i-1]
+            
+        def __len__(self):
+            return 1 + len(self.rest)
+```
+
+The built-in Python function `len` invokes a method called `__len__` when applied to a user-defined object argument. Likewise, the element selection operator invokes a method called `__getitem__`.
+
+
+
+Example: Range, Map, and Filter for Linked Lists
+
+![image-20251022105247622](images/image-20251022105247622.png)
+
+
+
+#### Linked Lists Mutation
+
+Attribute assignment statements can change first and rest attributes of a Link
+
+The rest of a linked list can contain the linked list itself as a sub-list
+
+
+
+### Tree Class
+
+#### Tree Class
+
+ A Tree has a label and a list of branches; each branch is a Tree
+
+```python
+>>> class Tree:
+        def __init__(self, label, branches=()):
+            self.label = label
+            for branch in branches:
+                assert isinstance(branch, Tree)
+            self.branches = branches
+        def __repr__(self):
+            if self.branches:
+                return 'Tree({0}, {1})'.format(self.label, repr(self.branches))
+            else:
+                return 'Tree({0})'.format(repr(self.label))
+        def is_leaf(self):
+            return not self.branches
+```
+
+
+
+#### Tree Class V.S. Data Abstraction Tree
+
+![image-20251022110546127](images/image-20251022110546127.png)
+
+
+
+#### Tree Mutation - Example: Pruning Trees
+
+ Removing subtrees from a  tree is called pruning
+
+tips: Prune branches before  recursive processing
+
+![image-20251022111032540](images/image-20251022111032540.png)
+
+```python
+def prune(t, n):
+    """Prune all sub-trees whose label is n."""
+    t.branches = [b for b in t.branches if b.label != n]
+    for b in t.branches:
+        prune(b, n)
+t = Tree(3, [Tree(1, [Tree(0), Tree(1)]), Tree(2, [Tree(1), Tree(1, [Tree(0), Tree(1)])])])        
+prune(t, 1)
+```
+
