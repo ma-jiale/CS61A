@@ -1754,3 +1754,81 @@ t = Tree(3, [Tree(1, [Tree(0), Tree(1)]), Tree(2, [Tree(1), Tree(1, [Tree(0), Tr
 prune(t, 1)
 ```
 
+
+
+
+
+## Lecture 22.Efficiency
+
+### Memoization
+
+ Idea: Remember the results that have been computed before
+
+![image-20251023114802854](images/image-20251023114802854.png)
+
+
+
+### Orders of Growth
+
+#### Common Orders of Growth
+
+![image-20251023114929712](images/image-20251023114929712.png)
+
+
+
+#### Order of Growth Notation
+
+Big Theta and Big O Notation for Orders of Growth
+
+![image-20251023115014138](images/image-20251023115014138.png)
+
+
+
+### Space
+
+#### Space and Environments
+
+**Which environment frames do we need to keep during evaluation?**
+
+At any moment there is a set of active environments, Values and frames in active environments consume memory, Memory that is used for other values and frames can be recycled.
+
+ Active environments: 
+
+- Environments for any function calls currently being evaluated
+- Parent environments of functions named in active environments
+
+
+
+
+
+## Lecture 23.Decomposition
+
+### Modular Design
+
+A design principle: Isolate different parts of a program that address different concerns  
+A modular component can be developed and tested independently
+
+![image-20251030132008801](images/image-20251030132008801.png)
+
+
+
+### sorted function
+
+```
+ sorted(iterable, /, *, key=None, reverse=False) 
+```
+
+Return a new list containing all items from the iterable in ascending order.   A custom key function can be supplied to customize the sort order, and the reverse flag can be set to request the result in descending order.
+
+#### 
+
+### Sets
+
+ One more built-in Python container type  
+
+- Set literals are enclosed in braces  
+- Duplicate elements are removed on construction 
+- Sets have arbitrary order
+
+![image-20251030132521714](images/image-20251030132521714.png)
+
