@@ -299,7 +299,7 @@ def two_list(vals, counts):
     pointer.rest = two_list(vals[1:], counts[1:])
     return first
 
-def two_list_more_elegant(vals, counts)
+def two_list_more_elegant(vals, counts):
     if len(vals) <= 0:
         return Link.empty
     first = None
