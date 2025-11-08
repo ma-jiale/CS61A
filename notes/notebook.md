@@ -1832,3 +1832,219 @@ Return a new list containing all items from the iterable in ascending order.   A
 
 ![image-20251030132521714](images/image-20251030132521714.png)
 
+
+
+
+
+## Lecture 27.Scheme
+
+### Scheme
+
+Scheme is a Dialect of Lisp
+
+
+
+### Scheme Expressions
+
+ Scheme programs consist of **expressions**, which can be:  
+
+- Primitive expressions: 2   3.3   true   +   quotient  
+- Combinations: (quotient 10 2)   (not true)
+
+Numbers are self-evaluating; symbols are bound to values
+
+```scheme
+> 3.3
+3.3
+> (define pi 3.14)
+> pi
+3.14
+```
+
+Call expressions include an operator and 0 or more operands in parentheses
+
+```scheme
+> (quotient 10 2) 
+5 
+```
+
+
+
+### Special Forms of  combinations
+
+ A combination that is not a call expression is a special form
+
+- if expression:
+
+  ```scheme
+  (if <predicate> <consequent> <alternative>)
+  ```
+
+  Evaluation:   (1) Evaluate the  predicate expression  (2) Evaluate either  the consequent or  alternative
+
+- and, or and not:
+
+  ```scheme
+  (and <e1> ... <en>)
+  (or <e1> ... <en>)
+  (not <e>)
+  ```
+
+- Binding symbols:
+
+  ```scheme
+  (define <symbol> <expression>)
+  ```
+
+- New procedures(functions):
+
+  ```scheme
+  (define (<symbol> <formal parameters>) <body>)
+  ```
+
+  A procedure may take in any number of parameters. 
+
+  The `<body>` may contain multiple expressions. There is not an equivalent version of a Python `return` statement in Scheme. The function will simply return the value of **the last expression** in the body.
+
+- Cond & Begin
+
+   The cond special form that behaves like if-elif-else statements in Python
+
+![image-20251108104855368](images/image-20251108104855368.png)
+
+​		The begin special form combines multiple expressions into one expression
+
+![image-20251108104914994](images/image-20251108104914994.png)
+
+- Let Expressions
+
+   The let special form binds symbols to values temporarily; just for one expression
+
+  ```
+  (let ((var1 value1)
+        (var2 value2)
+        ...)
+    expr1
+    expr2
+    ...
+    exprN)
+  
+  ```
+
+  ![image-20251108105549544](images/image-20251108105549544.png)
+
+  
+
+### Lambda Expressions
+
+ Lambda expressions evaluate to anonymous procedures
+
+```
+(lambda (<formal-parameters>) <body>)
+```
+
+Two equivalent expressions:
+
+```
+(define (<symbol> <formal parameters>) <body>)
+(define <symbol> (lambda (<formal parameters>) <body>))
+```
+
+
+
+### Scheme Lists
+
+ In the late 1950s, computer scientists used confusing names  
+
+- cons: Two-argument procedure that creates a linked list  
+
+- car:  Procedure that returns the first element of a list  
+
+- cdr:  Procedure that returns the rest of a list  
+
+- nil:  The empty list 
+
+  ![image-20251108105854261](images/image-20251108105854261.png)
+
+**Important! Scheme lists are written in parentheses with elements separated by spaces** 
+
+![image-20251108105824443](images/image-20251108105824443.png)
+
+
+
+### Symbolic Programming
+
+ Symbols normally refer to values;
+
+```scheme
+> (define a 1) 
+> (define b 2) 
+> (list a b) 
+(1 2)
+```
+
+#### Quotation 
+
+Quotation is used to refer to symbols directly in Lisp.
+
+```scheme
+> (list 'a 'b) 
+(a b) 
+> (list 'a b) 
+(a 2)
+```
+
+'a is short for (quote a)
+
+Quotation can also be applied to combinations to form lists.
+
+```scheme
+> '(a b c) 
+(a b c) 
+> (car '(a b c)) 
+a 
+> (cdr '(a b c)) 
+(b c)
+```
+
+#### Quasiquotation
+
+There are two ways to quote an expression 
+
+Quote:          '(a b)   =>   (a b)   
+
+Quasiquote: `(a b)   =>   (a b) 
+
+They are different because parts of a quasiquoted expression can be unquoted with , 
+
+​                      (define b 4)   
+
+Quote:           '(a ,(+ b 1))  =>   (a (unquote (+ b 1))   
+
+Quasiquote: `(a ,(+ b 1))  =>   (a 5)
+
+Quasiquotation is particularly convenient for generating Scheme expressions:
+
+```
+(define (make-add-procedure n) `(lambda (d) (+ d ,n)))              
+(make-add-procedure 2)  => (lambda (d) (+ d 2))
+```
+
+
+
+### Programs as Data
+
+ Scheme programs consist of **expressions**, which can be:  
+
+- Primitive expressions: 2   3.3   true   +   quotient  
+- Combinations: (quotient 10 2)   (not true)
+
+ The built-in Scheme list data structure (which is a linked list) can represent combinations
+
+```scheme
+scm> (list 'quotient 10 2) 
+(quotient 10 2) 
+scm> (eval (list 'quotient 10 2)) 
+5 
+```
+
