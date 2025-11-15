@@ -2048,3 +2048,377 @@ scm> (eval (list 'quotient 10 2))
 5 
 ```
 
+
+
+
+
+## Lecture 28. Exceptions
+
+### Exceptions
+
+A built-in mechanism in a programming language to declare and respond to exceptional conditions  
+
+Python raises an exception whenever an error occurs  
+
+Exceptions can be handled by the program, preventing the interpreter from halting  
+
+Unhandled exceptions will cause Python to halt execution and print a stack trace
+
+**Exceptions enable non-local continuation of control **
+
+​	If f calls g and g calls h, exceptions can shift control from h to f without waiting for g to return.  
+
+```python
+def f():
+    try:
+        g()
+    except Exception as e:
+        print("f caught:", e)
+
+def g():
+    h()
+
+def h():
+    raise Exception("error in h")
+
+f()
+```
+
+(Exception handling tends to be slow.)
+
+
+
+### Exception is object
+
+An exception is a object instance with a class that inherits, either directly or indirectly, from the `BaseException` class.
+
+Exceptions are constructed like any other object.  E.g., TypeError('Bad argument!') 
+
+- TypeError -- A function was passed the wrong number/type of argument  
+- NameError -- A name wasn't found  
+- KeyError -- A key wasn't found in a dictionary  
+- RecursionError -- Too many recursive calls
+
+
+
+### Raising Exceptions
+
+#### Assert Statements
+
+Assert statements raise an exception of type AssertionError
+
+```
+assert <expression>, <string>
+```
+
+ Assertions are designed to be used liberally. They can be ignored to increase efficiency  by running Python with the "-O" flag; "O" stands for optimized
+
+```
+> py -O
+> python -O
+> python3 -O
+```
+
+ Whether assertions are enabled is governed by a bool __debug__
+
+```python
+>python -O
+Python 3.8.10 (tags/v3.8.10:3d8993a, May  3 2021, 11:48:03) [MSC v.1928 64 bit (AMD64)] on win32
+Type "help", "copyright", "credits" or "license" for more information.
+>>> __debug__
+False
+```
+
+#### Raise Statements
+
+Exceptions are raised with a raise statement
+
+```
+raise <expression>
+```
+
+\<expression\> must evaluate to a subclass of BaseException or an instance of one
+
+
+
+### Handle Exceptions
+
+ Exception handling can prevent a program from terminating
+
+#### Try Statements
+
+ Try statements handle exceptions 
+
+```
+try: 
+    <try suite> 
+except <exception class> as <name>: 
+    <except suite> 
+...
+```
+
+Execution rule:  
+
+- The <try suite\> is executed first  
+- If, during the course of executing the <try suite\>,   an exception is raised that is not handled otherwise, and  
+- If the class of the exception inherits from <exception class\>, 
+- then  The <except suite\> is executed, with <name\> bound to the exception
+
+ **Multiple try statements**: Control jumps to the except suite of the most recent  try statement that handles **that type of exception**
+
+
+
+
+
+## Lecture 29. Calculator
+
+### Metalinguistic Abstraction
+
+ A powerful form of abstraction is to define a new language that is tailored to a particular  type of application or problem domain
+
+A programming language has:  
+
+- Syntax: The legal statements and expressions in the language  
+- Semantics: The execution/evaluation rule for those statements and expressions 
+
+To create a new programming language, you either need a:  
+
+- Specification: A document describe the precise syntax and semantics of the language  
+- Canonical Implementation: An interpreter or compiler for the language
+
+
+
+### Parsing
+
+The task of parsing a language involves coercing a string representation of an expression to the expression itself
+
+A Parser takes text and returns an expression
+
+![image-20251109230735388](images/image-20251109230735388.png)
+
+
+
+### Scheme-Syntax Calculator
+
+#### The Pair Class
+
+The Pair class represents Scheme pairs and lists.  A list is a pair whose second element  is either a list or nil.
+
+```python
+class Pair(object):
+    """A pair has two instance attributes: first and second.  For a Pair to be
+    a well-formed list, second is either a well-formed list or nil.  Some
+    methods only apply to well-formed lists.
+
+    >>> s = Pair(1, Pair(2, nil))
+    >>> s
+    Pair(1, Pair(2, nil))
+    >>> print(s)
+    (1 2)
+    >>> len(s)
+    2
+    >>> s[1]
+    2
+    >>> print(s.map(lambda x: x+4))
+    (5 6)
+    """
+    def __init__(self, first, second):
+        self.first = first
+        self.second = second
+
+    def __repr__(self):
+        return "Pair({0}, {1})".format(repr(self.first), repr(self.second))
+
+    def __str__(self):
+        s = "(" + str(self.first)
+        second = self.second
+        while isinstance(second, Pair):
+            s += " " + str(second.first)
+            second = second.second
+        if second is not nil:
+            s += " . " + str(second)
+        return s + ")"
+
+    def __len__(self):
+        n, second = 1, self.second
+        while isinstance(second, Pair):
+            n += 1
+            second = second.second
+        if second is not nil:
+            raise TypeError("length attempted on improper list")
+        return n
+
+    def __getitem__(self, k):
+        if k < 0:
+            raise IndexError("negative index into list")
+        y = self
+        for _ in range(k):
+            if y.second is nil:
+                raise IndexError("list index out of bounds")
+            elif not isinstance(y.second, Pair):
+                raise TypeError("ill-formed list")
+            y = y.second
+        return y.first
+
+    def map(self, fn):
+        """Return a Scheme list after mapping Python function FN to SELF."""
+        mapped = fn(self.first)
+        if self.second is nil or isinstance(self.second, Pair):
+            return Pair(mapped, self.second.map(fn))
+        else:
+            raise TypeError("ill-formed list")
+
+class nil(object):
+    """The empty list"""
+
+    def __repr__(self):
+        return "nil"
+
+    def __str__(self):
+        return "()"
+
+    def __len__(self):
+        return 0
+
+    def __getitem__(self, k):
+        if k < 0:
+            raise IndexError("negative index into list")
+        raise IndexError("list index out of bounds")
+
+    def map(self, fn):
+        return self
+
+nil = nil() # Assignment hides the nil class; there is only one instance
+```
+
+Scheme expressions are represented as Scheme lists!  homoiconic: Source code is data 
+
+#### Calculator Syntax
+
+The Calculator language has primitive expressions and call expressions. 
+
+Expressions are represented as Scheme lists (Pair instances) that encode tree structures.
+
+![image-20251109231233898](images/image-20251109231233898.png)
+
+#### Calculator Semantics
+
+The value of a calculator expression is defined recursively. 
+
+![image-20251109231350717](images/image-20251109231350717.png)
+
+#### Evaluation
+
+The eval function computes the value of an expression, which is always a number  
+
+It is a generic function that dispatches on the type of the expression (primitive or call)
+
+![image-20251109231458382](images/image-20251109231458382.png)
+
+#### Applying Built-in Operators
+
+The apply function applies some operation to a (Scheme) list of argument values  
+
+In calculator, all operations are named by built-in operators: +, -, *, /
+
+![image-20251109231549682](images/image-20251109231549682.png)
+
+
+
+### Interactive Interpreters
+
+#### Read-Eval-Print Loop
+
+ The user interface for many programming languages is an interactive interpreter  
+
+1. Print a prompt 
+2. Read text input from the user  
+3. Parse the text input into an expression  
+4. Evaluate the expression  
+5. If any errors occur, report those errors, otherwise  
+6. Print the value of the expression and repeat
+
+#### Raising Exceptions
+
+Exceptions are raised within lexical analysis, syntactic analysis, eval, and apply
+
+#### Handling Exceptions
+
+A well-designed interactive interpreter should not halt completely on an error,  so that the user has an opportunity to try again in the current environment
+
+
+
+
+
+## Lecture 30. Interpreter
+
+### The Structure of an Interpreter
+
+![image-20251115090931899](images/image-20251115090931899.png)
+
+
+
+### Scheme Evaluation
+
+ The scheme_eval function choose behavior based on expression form: 
+
+- Symbols are looked up in the current environment 
+
+- Self-evaluating expressions are returned as values
+
+- All other legal expressions are represented as Scheme lists, called **combinations**. Either Special forms or Call expression
+
+  ![image-20251115091217887](images/image-20251115091217887.png)
+
+
+
+### Special Forms Evaluation
+
+#### Logical Forms
+
+![image-20251115091633142](images/image-20251115091633142.png)
+
+#### Quotation
+
+ The quote special form evaluates to the quoted expression, which is not evaluated
+
+![image-20251115091825123](images/image-20251115091825123.png)
+
+The <expression\> itself is the value of the whole quote expression
+
+ **'<expression\> is shorthand for (quote <expression\>)**
+
+ The scheme_read parser converts shorthand ' to a combination that starts with quote
+
+#### Lambda Expressions
+
+ Lambda expressions evaluate to user-defined procedures 
+
+```scheme
+ (lambda (<formal-parameters>) <body>)
+ (lambda (x) (* x x))
+```
+
+In interpreter
+
+```python
+ class LambdaProcedure: 
+    def __init__(self, formals, body, env): 
+        self.formals = formals	# A scheme list of symbols
+        self.body = body	# A scheme list of expressions
+        self.env = env	#  A Frame instance
+```
+
+A frame represents an environment by having a parent frame
+
+Frames are Python instances with methods lookup and define in Interpreter
+
+#### Define Expressions
+
+![image-20251115092312553](images/image-20251115092312553.png)
+
+
+
+### Applying User-Defined Procedures
+
+![image-20251115093124528](images/image-20251115093124528.png)
