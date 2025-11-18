@@ -6,7 +6,14 @@
 ; Some utility functions that you may find useful to implement
 
 (define (zip pairs)
-  'replace-this-line)
+    (if (null? (cdr pairs))
+      (list (list (caar pairs)) (list (car (cdar pairs))))
+    (let
+      ((res (zip (cdr pairs))))
+      (list (cons (caar pairs) (car res)) (cons (car (cdar pairs)) (cadr res)))
+    )
+    )
+)
 
 
 ;; Problem 15
@@ -46,9 +53,9 @@
   ; END PROBLEM 16
 
 
-(merge < '(1 5 7 9) '(4 8 10))
+;(merge < '(1 5 7 9) '(4 8 10))
 ; expect (1 4 5 7 8 9 10)
-(merge > '(9 7 5 1) '(10 8 4 3))
+;(merge > '(9 7 5 1) '(10 8 4 3))
 ; expect (10 9 8 7 5 4 3 1)
 
 ;; Problem 17
@@ -65,7 +72,7 @@
     )
 )
 
-; return no_decrease sub_list and part that don¡¯t be processed of s  
+; return no_decrease sub_list and part that donâ€™t be processed of s  
 (define (compose_no_decre s)
     (if (or (null? (cdr s)) (> (car s) (car (cdr s))))
         (list (cons (car s) nil) (cdr s))
@@ -76,7 +83,7 @@
     )
 )
     ; END PROBLEM 17
-(nondecreaselist '(1 2 3 4 1 2 3 4 1 1 1 2 1 1 0 4 3 2 1))
+;(nondecreaselist '(1 2 3 4 1 2 3 4 1 1 1 2 1 1 0 4 3 2 1))
 
 ;; Problem EC
 ;; Returns a function that checks if an expression is the special form FORM
@@ -90,14 +97,14 @@
 
 ;; Converts all let special forms in EXPR into equivalent forms using lambda
 (define (let-to-lambda expr)
-  (cond ((atom? expr)
+    (cond ((atom? expr)
          ; BEGIN PROBLEM EC
-         'replace-this-line
+         expr
          ; END PROBLEM EC
          )
         ((quoted? expr)
          ; BEGIN PROBLEM EC
-         'replace-this-line
+         expr
          ; END PROBLEM EC
          )
         ((or (lambda? expr)
@@ -106,19 +113,24 @@
                (params (cadr expr))
                (body   (cddr expr)))
            ; BEGIN PROBLEM EC
-           'replace-this-line
+           (cons form (cons params (map let-to-lambda body)))
            ; END PROBLEM EC
            ))
         ((let? expr)
          (let ((values (cadr expr))
                (body   (cddr expr)))
            ; BEGIN PROBLEM EC
-           'replace-this-line
+           (define params_fomals (zip values))
+           (define fomals (cadr params_fomals))
+           (define params (car params_fomals))
+           (cons (cons 'lambda (cons params (map let-to-lambda body))) (map let-to-lambda fomals))
            ; END PROBLEM EC
            ))
         (else
          ; BEGIN PROBLEM EC
-         'replace-this-line
-         ; END PROBLEM EC
-         )))
-
+         (map let-to-lambda expr)   
+         ; BEGIN PROBLEM EC
+        )
+    )
+)
+     

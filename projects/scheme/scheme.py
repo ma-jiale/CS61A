@@ -37,6 +37,8 @@ def scheme_eval(expr, env, _=None): # Optional third argument is ignored
     else:
         # BEGIN PROBLEM 4
         procedure = scheme_eval(expr.first, env)
+        if type(procedure) is MacroProcedure:
+            return procedure.apply_macro(expr.rest, env)
         args = expr.rest.map(lambda expr: scheme_eval(expr, env))
         return scheme_apply(procedure, args, env)
         # END PROBLEM 4
@@ -74,6 +76,8 @@ def eval_all(expressions, env):
     curr = expressions
     result = None
     while not curr is nil:
+        if curr.rest is nil:
+            return scheme_eval(curr.first, env, tail=True)
         result = scheme_eval(curr.first, env) # replace this with lines of your own code
         curr = curr.rest
     return result
@@ -221,7 +225,7 @@ class MacroProcedure(LambdaProcedure):
 
     def apply_macro(self, operands, env):
         """Apply this macro to the operand expressions."""
-        return complete_apply(self, operands, env)
+        return scheme_eval(complete_apply(self, operands, env), env)
 
 def add_builtins(frame, funcs_and_names):
     """Enter bindings in FUNCS_AND_NAMES into FRAME, an environment frame,
@@ -328,9 +332,9 @@ def do_if_form(expressions, env):
     """
     validate_form(expressions, 2, 3)
     if is_true_primitive(scheme_eval(expressions.first, env)):
-        return scheme_eval(expressions.rest.first, env)
+        return scheme_eval(expressions.rest.first, env, tail=True)
     elif len(expressions) == 3:
-        return scheme_eval(expressions.rest.rest.first, env)
+        return scheme_eval(expressions.rest.rest.first, env, tail=True)
 
 def do_and_form(expressions, env):
     """Evaluate a (short-circuited) and form.
@@ -346,14 +350,17 @@ def do_and_form(expressions, env):
     False
     """
     # BEGIN PROBLEM 12
+    if expressions is nil:
+        return True
     curr = expressions
     value = True
     while not curr is nil:
+        if curr.rest is nil:
+            return scheme_eval(curr.first, env)
         value = scheme_eval(curr.first, env)
         if is_false_primitive(value):
             return value
         curr = curr.rest
-    return value
     # END PROBLEM 12
 
 def do_or_form(expressions, env):
@@ -370,14 +377,17 @@ def do_or_form(expressions, env):
     6
     """
     # BEGIN PROBLEM 12
+    if expressions is nil:
+        return False
     curr = expressions
     value = False
     while not curr is nil:
+        if curr.rest is nil:
+            return scheme_eval(curr.first, env, True)
         value = scheme_eval(curr.first, env)
         if is_true_primitive(value):
             return value
         curr = curr.rest
-    return value
     # END PROBLEM 12
 
 def do_cond_form(expressions, env):
@@ -397,12 +407,9 @@ def do_cond_form(expressions, env):
             test = scheme_eval(clause.first, env)
         if is_true_primitive(test):
             # BEGIN PROBLEM 13
-            curr = clause.rest
-            result = test
-            while not curr is nil:
-                result = scheme_eval(curr.first, env)
-                curr = curr.rest
-            return result
+            if clause.rest is nil:
+                return test
+            return eval_all(clause.rest, env)
             # END PROBLEM 13
         expressions = expressions.rest
 
@@ -448,7 +455,19 @@ def do_define_macro(expressions, env):
     1
     """
     # BEGIN Problem 20
-    "*** YOUR CODE HERE ***"
+    validate_form(expressions, 2) # Checks that expressions is a list of length at least 2
+    target = expressions.first
+    if isinstance(target, Pair) and scheme_symbolp(target.first):
+        # BEGIN PROBLEM 9
+        "*** YOUR CODE HERE ***"
+        f_name = target.first
+        value = MacroProcedure(target.rest, expressions.rest, env)
+        env.define(f_name, value)
+        return f_name
+        # END PROBLEM 9
+    else:
+        bad_target = target.first if isinstance(target, Pair) else target
+        raise SchemeError('non-symbol: {0}'.format(bad_target))
     # END Problem 20
 
 
@@ -465,7 +484,7 @@ def do_quasiquote_form(expressions, env):
             if level == 0:
                 expressions = val.rest
                 validate_form(expressions, 1, 1)
-                return scheme_eval(expressions.first, env)
+                return scheme_eval(expressions.first, env, tail=True)
         elif val.first == 'quasiquote':
             level += 1
 
@@ -559,7 +578,9 @@ class MuProcedure(Procedure):
         self.body = body
 
     # BEGIN PROBLEM 18
-    "*** YOUR CODE HERE ***"
+    def make_call_frame(self, args, env):
+        call_frame = env.make_child_frame(self.formals, args)
+        return call_frame
     # END PROBLEM 18
 
     def __str__(self):
@@ -575,7 +596,8 @@ def do_mu_form(expressions, env):
     formals = expressions.first
     validate_formals(formals)
     # BEGIN PROBLEM 18
-    "*** YOUR CODE HERE ***"
+    body = expressions.rest
+    return  MuProcedure(formals, body)
     # END PROBLEM 18
 
 SPECIAL_FORMS['mu'] = do_mu_form
@@ -647,7 +669,9 @@ def optimize_tail_calls(original_scheme_eval):
 
         result = Thunk(expr, env)
         # BEGIN PROBLEM 19
-        "*** YOUR CODE HERE ***"
+        while type(result) is Thunk:
+            result = original_scheme_eval(result.expr, result.env)
+        return result
         # END PROBLEM 19
     return optimized_eval
 
@@ -659,7 +683,7 @@ def optimize_tail_calls(original_scheme_eval):
 ################################################################
 # Uncomment the following line to apply tail call optimization #
 ################################################################
-# scheme_eval = optimize_tail_calls(scheme_eval)
+scheme_eval = optimize_tail_calls(scheme_eval)
 
 
 

@@ -529,8 +529,7 @@ one-through-four
 ; expect 2
 
 (define (loop) (loop))
-(cond (#f (loop))
-      (12))
+(cond (#f (loop)) (12))
 ; expect 12
 
 ((lambda (x) (display x) (newline) x) 2)
