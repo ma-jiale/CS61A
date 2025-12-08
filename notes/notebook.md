@@ -2422,3 +2422,74 @@ Frames are Python instances with methods lookup and define in Interpreter
 ### Applying User-Defined Procedures
 
 ![image-20251115093124528](images/image-20251115093124528.png)
+
+
+
+## Lecture 31. Declarative Programming
+
+DMS
+
+Database Management Systems
+
+Table
+
+A table is a collection of records, which are rows that have a value for each column
+
+![image-20251207114643949](images/image-20251207114643949.png)
+
+Declarative Programming
+
+In declarative languages such as SQL & Prolog:  
+
+- A "program" is a description of the desired result  
+- The interpreter figures out how to generate the result
+
+In imperative languages (命令式编程) such as Python & Scheme:  
+
+- A "program" is a description of computational processes  
+- The interpreter carries out execution/evaluation rules
+
+SQL
+
+ Structured Query Language that is a declarative programming language
+
+- A select statement creates a new table, either from scratch or by projecting a table  
+- A create table statement gives a global name to a table  
+- Lots of other statements exist: analyze, delete, explain, insert, replace, update, etc.  
+- Most of the important action is in the select statement
+
+Selecting Value Literals
+
+A select statement always includes a comma-separated list of column descriptions  
+A column description is an expression, optionally followed by as and a column name
+
+```sql
+select [expression] as [name], [expression] as [name]
+```
+
+Selecting literals creates a one-row table 
+
+union
+
+The union of two select statements is a table  containing the rows of both of their results
+
+![image-20251207115700691](images/image-20251207115700691.png)
+
+Naming Tables
+
+A create table statement gives the result a name
+
+```
+create table [name] as [select statement];
+```
+
+Select Statements Project Existing Tables
+
+A select statement can specify an input table using a from clause  
+A subset of the rows of the input table can be selected using a where clause  
+An ordering over the remaining rows can be declared using an order by clause  
+Column descriptions determine how each input row is projected to a result row
+
+```
+with [tables] select [columns descriptions] (as name) from [names] where [condition] order by [order]
+```
