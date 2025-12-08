@@ -2493,3 +2493,97 @@ Column descriptions determine how each input row is projected to a result row
 ```
 with [tables] select [columns descriptions] (as name) from [names] where [condition] order by [order]
 ```
+
+
+
+## Lecture 32.Tables
+
+Joining two Tables
+
+Two tables A & B are joined by a comma to yield all combinations of a row from A & a row from B (笛卡尔积)
+
+```
+SELECT [columns] FROM [table] WHERE [condition] ORDER BY [order];
+```
+
+[table] is a comma-separated list of table names with optional aliases
+
+
+
+Aliases and Dot Expressions
+
+```
+SELECT a.child AS first, b.child AS second  
+  FROM parents AS a, parents AS b 
+  WHERE a.parent = b.parent AND a.child < b.child;
+```
+
+Multiple tables can be joined to yield all combinations of rows from each 
+
+
+
+Numerical Expressions
+
+Expressions can contain function calls and arithmetic operators
+
+![image-20251208104724847](images/image-20251208104724847.png)
+
+- Combine values: +, -, *, /, %, and, or  
+- Transform values: abs, round, not, -  
+- Compare values: <, <=, >, >=, <>, !=, =
+
+
+
+String Expressions
+
+![image-20251208104814955](images/image-20251208104814955.png)
+
+
+
+
+
+## Lecture 33.Aggregation
+
+Aggregate Functions
+
+An aggregate function in the [columns] clause computes a value from a group of rows
+
+`max`, `min`, `count`, and `sum` return the maximum, minimum, number, and sum of the values in a column.
+
+
+
+Mixing Aggregate Functions and Single Values
+
+An aggregate function also selects some row in the table to supply the values of columns  that are not aggregated.
+
+In the case of max or min, this row is that of the max or min value.  Otherwise, it is arbitrary.
+
+
+
+Groups
+
+Rows in a table can be grouped, and aggregation is performed on each group
+
+![image-20251208105527109](images/image-20251208105527109.png)
+
+The number of groups is the number of unique values of an expression
+
+```
+select legs, max(weight) from animals group by legs;
+```
+
+![image-20251208105757613](images/image-20251208105757613.png)
+
+A having clause filters the set of groups that are aggregated
+
+```
+select weight/legs, count(*) from animals group by weight/legs having count(*)>1;
+```
+
+![image-20251208105924124](images/image-20251208105924124.png)
+
+
+
+distinct
+
+The `distinct` keyword ensures that no repeated values in a column are included in the aggregation.
