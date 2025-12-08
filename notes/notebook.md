@@ -15,21 +15,21 @@
 - Staff office hours
 - Online textbook
 
-![image-20240910214419734](image/image-20240910214419734.png)
+![image-20240910214419734](images/image-20240910214419734.png)
 
 ### 计算机科学的简介 An Intro to Computer Science
 
 什么是计算机科学 What is Computer Science?
 
-![image-20240910214545049](image/image-20240910214545049.png)
+![image-20240910214545049](images/image-20240910214545049.png)
 
 ### 可以在这门课上学到什么？What is This Course About? 
 
-![image-20240910214705129](image/image-20240910214705129.png)
+![image-20240910214705129](images/image-20240910214705129.png)
 
 ### 如何合作 Collaboration
 
-![image-20240910214829583](image/image-20240910214829583.png)
+![image-20240910214829583](images/image-20240910214829583.png)
 
 
 
@@ -271,15 +271,15 @@ Got:
 
 ### 调用表达式的构造
 
-![Screenshots_2024-09-07_11-04-28](image/Screenshots_2024-09-07_11-04-28.png)
+![Screenshots_2024-09-07_11-04-28](images/Screenshots_2024-09-07_11-04-28.png)
 
 ### 求解嵌套表达式(表达式树)
 
-![Screenshots_2024-09-07_11-04-49](image/Screenshots_2024-09-07_11-04-49.png)
+![Screenshots_2024-09-07_11-04-49](images/Screenshots_2024-09-07_11-04-49.png)
 
 ### 表达式种类
 
-![Screenshots_2024-09-07_11-05-54](image/Screenshots_2024-09-07_11-05-54.png)
+![Screenshots_2024-09-07_11-05-54](images/Screenshots_2024-09-07_11-05-54.png)
 
 ### 环境和帧 Environment & Frame
 
@@ -289,27 +289,27 @@ Got:
 
 环境图表是一种记录(变量名)连接情况以及计算机程序状态的可视化工具
 
-![Screenshots_2024-09-07_11-07-38](image/Screenshots_2024-09-07_11-07-38.png)
+![Screenshots_2024-09-07_11-07-38](images/Screenshots_2024-09-07_11-07-38.png)
 
 [环境图表工具](https://pythontutor.com/render.html#mode=edit)
 
 ### 赋值语句 Assignment Statements
 
-![image-20240907113832465](image/image-20240907113832465.png)
+![image-20240907113832465](images/image-20240907113832465.png)
 
 ### 定义函数
 
-![image-20240907113920643](image/image-20240907113920643.png)
+![image-20240907113920643](images/image-20240907113920643.png)
 
 ### 调用自定义函数  
 
-![image-20240907114158039](image/image-20240907114158039.png)
+![image-20240907114158039](images/image-20240907114158039.png)
 
 ### 名称求解 Name Evaluation
 
 在环境中寻找该名称，最早找到的含有该名称的帧，其里边绑定的值就是这个名称的计算结果。
 
-![image-20240907114232331](image/image-20240907114232331.png)
+![image-20240907114232331](images/image-20240907114232331.png)
 
 
 
@@ -333,7 +333,7 @@ Got:
 
 **非纯函数（Non-pure functions）**：除了返回值外，调用一个非纯函数还会产生其他改变解释器和计算机的状态的副作用（side effect）。一个常见的副作用就是使用 `print` 函数产生（非返回值的）额外输出。
 
-![image-20240908162226433](image/image-20240908162226433.png)
+![image-20240908162226433](images/image-20240908162226433.png)
 
 ### Multiple Environments 多重环境
 
@@ -394,7 +394,7 @@ Got:
 
 由其他语句（简单语句和复合语句）组成被称为复合语句。复合语句通常跨越多行，以单行头部（header）开始，并以冒号结尾，其中冒号标识语句的类型。头部和缩进的句体（suite）一起称为子句(clause)。复合语句由一个或多个子句组成：
 
-![image-20240908163620525](image/image-20240908163620525.png)
+![image-20240908163620525](images/image-20240908163620525.png)
 
 - 要执行一系列语句，会先执行第一个语句。如果该语句不重定向控制，则继续执行语句序列的其余部分（如果还有的话）。
 
@@ -472,7 +472,7 @@ while <expression>:
 
 #### 局部定义函数
 
-![image-20240910222234811](image/image-20240910222234811.png)
+![image-20240910222234811](images/image-20240910222234811.png)
 
 ### Lambda 表达式
 
@@ -489,7 +489,7 @@ lambda              x         :              f(g(x))
 
 #### lambda 表达式与Def Statements的对比
 
-![image-20240910224539120](image/image-20240910224539120.png)
+![image-20240910224539120](images/image-20240910224539120.png)
 
 ### Return 语句
 
@@ -503,7 +503,7 @@ return语句完成执行调用表达式并求出它的值
 
 为什么if语句不能简写成调用表达式
 
-![image-20240910225333061](image/image-20240910225333061.png)
+![image-20240910225333061](images/image-20240910225333061.png)
 
 ### 控制表达式 Control Expression
 
@@ -542,7 +542,7 @@ True
 
 #### 条件表达式
 
-![image-20240910230113883](image/image-20240910230113883.png)
+![image-20240910230113883](images/image-20240910230113883.png)
 
 
 
@@ -558,11 +558,11 @@ True
 
 ### Environments for Nested Definitions
 
-<img src="image/image-20240911230433611.png" alt="image-20240911230433611" style="zoom:60%;" />
+<img src="images/image-20240911230433611.png" alt="image-20240911230433611" style="zoom:60%;" />
 
 ### How to Draw an Environment Diagram
 
-![image-20240911230850409](image/image-20240911230850409.png)
+![image-20240911230850409](images/image-20240911230850409.png)
 
 ### 局部赋值 Local Names
 
@@ -608,7 +608,7 @@ def curry2(f):
 
 ### Choosing Names
 
-![image-20240918093924835](image/image-20240918093924835.png)
+![image-20240918093924835](images/image-20240918093924835.png)
 
 
 
@@ -630,11 +630,11 @@ def curry2(f):
 
 ### 刨析递归函数
 
-![image-20240926144849422](image/image-20240926144849422.png)
+![image-20240926144849422](images/image-20240926144849422.png)
 
 ### 递归函数的“信仰之跃”
 
-![image-20240926145158792](image/image-20240926145158792.png)
+![image-20240926145158792](images/image-20240926145158792.png)
 
 ### 循环和递归之间的转换
 
@@ -734,13 +734,13 @@ Any values can be included in a list, including another list. Element selection 
 
 A `for` statement consists of a single clause with the form:
 
-<img src="image/image-20241001110057921.png" alt="image-20241001110057921" style="zoom:67%;" />
+<img src="images/image-20241001110057921.png" alt="image-20241001110057921" style="zoom:67%;" />
 
 #### **Sequence unpacking**
 
 This pattern of binding multiple names to multiple values in a fixed-length sequence is called *sequence unpacking*;
 
-<img src="image/image-20241001111153813.png" alt="image-20241001111153813" style="zoom: 67%;" />
+<img src="images/image-20241001111153813.png" alt="image-20241001111153813" style="zoom: 67%;" />
 
 
 
@@ -764,20 +764,20 @@ range(1, 10)
 
 #### List Comprehensions
 
-<img src="image/image-20241001112405280.png" alt="image-20241001112405280" style="zoom: 60%;" />
+<img src="images/image-20241001112405280.png" alt="image-20241001112405280" style="zoom: 60%;" />
 
 ```python
 odds = [1, 3, 5, 7, 9]
 evens = [x+1 for x in odds]
 ```
 
-<img src="image/image-20241001112825500.png" alt="image-20241001112825500" style="zoom:67%;" />
+<img src="images/image-20241001112825500.png" alt="image-20241001112825500" style="zoom:67%;" />
 
 #### Aggregation
 
 A third common pattern in sequence processing is to aggregate all values in a sequence into a single value.
 
-<img src="image/image-20241006173145018.png" alt="image-20241006173145018" style="zoom:67%;" />
+<img src="images/image-20241006173145018.png" alt="image-20241006173145018" style="zoom:67%;" />
 
 
 
@@ -875,7 +875,7 @@ True
 
 以有理数示例为例：
 
-![image-20241006112002624](image/image-20241006112002624.png)
+![image-20241006112002624](images/image-20241006112002624.png)
 
 在上面的每一层中，最后一列中的函数会强制实施抽象屏障（abstraction barrier）。这些功能会由更高层次调用，并使用较低层次的抽象实现。
 
@@ -943,7 +943,7 @@ Evaluating a dictionary comprehension creates a new dictionary object.
 
 #### Limitations on Dictionaries
 
-<img src="image/image-20241006113157127.png" alt="image-20241006113157127" style="zoom:67%;" />
+<img src="images/image-20241006113157127.png" alt="image-20241006113157127" style="zoom:67%;" />
 
 
 
@@ -963,13 +963,13 @@ Lists are represented as a row of index-labeled adjacent boxes, one per element
 
 Each box either contains a primitive value or points to a compound value
 
-![image-20241006170701240](image/image-20241006170701240.png)
+![image-20241006170701240](images/image-20241006170701240.png)
 
 ### Tree Abstraction
 
 树（tree）是一种基本的数据抽象，它将层次化的值按照一定的规律进行组织和操作。
 
-<img src="image/image-20241006173920157.png" alt="image-20241006173920157" style="zoom:67%;" />
+<img src="images/image-20241006173920157.png" alt="image-20241006173920157" style="zoom:67%;" />
 
 #### Implementing the Tree Abstraction
 
@@ -997,7 +997,7 @@ American Standard Code for Information Interchange
 
 ### the Unicode Standard
 
-<img src="image/image-20241107162224193.png" alt="image-20241107162224193" style="zoom: 67%;" />
+<img src="images/image-20241107162224193.png" alt="image-20241107162224193" style="zoom: 67%;" />
 
 
 
@@ -1042,7 +1042,7 @@ a, b = 1, 2
 
 #### Identity Operators
 
-<img src="image/image-20241107163143550.png" alt="image-20241107163143550" style="zoom:67%;" />
+<img src="images/image-20241107163143550.png" alt="image-20241107163143550" style="zoom:67%;" />
 
 ### Mutable Default Arguments are Dangerous
 
@@ -1080,7 +1080,7 @@ s = [2, 3]
 
 t = [5, 6]
 
-<img src="image/image-20241107164051382.png" alt="image-20241107164051382" style="zoom:67%;" />
+<img src="images/image-20241107164051382.png" alt="image-20241107164051382" style="zoom:67%;" />
 
 ####  pop
 
@@ -1094,7 +1094,7 @@ remove removes the  first element equal  to the argument
 
  slice assignment can  remove elements from  a list by assigning  [] to a slice
 
-<img src="image/image-20241107164218801.png" alt="image-20241107164218801" style="zoom:67%;" />
+<img src="images/image-20241107164218801.png" alt="image-20241107164218801" style="zoom:67%;" />
 
 
 
@@ -1113,7 +1113,7 @@ A function with behavior that varies over time
 
 #### Non-Local Assignment
 
-<img src="image/image-20241113125459305.png" alt="image-20241113125459305" style="zoom:67%;" />
+<img src="images/image-20241113125459305.png" alt="image-20241113125459305" style="zoom:67%;" />
 
 #### Python Particulars
 
@@ -1121,7 +1121,7 @@ Python pre-computes which frame contains each name before executing the body of 
 
 if we don't use nonlocal statement, a weird error will occur.
 
-<img src="image/image-20241113125608813.png" alt="image-20241113125608813" style="zoom:67%;" />
+<img src="images/image-20241113125608813.png" alt="image-20241113125608813" style="zoom:67%;" />
 
 #### Referential Transparency, Lost
 
@@ -1147,7 +1147,7 @@ The iterator abstraction has two components:
 
 there are two built-in function in Python to implement the two components:
 
-<img src="image/image-20241204212632161.png" alt="image-20241204212632161" style="zoom:50%;" />
+<img src="images/image-20241204212632161.png" alt="image-20241204212632161" style="zoom:50%;" />
 
 
 
@@ -1163,7 +1163,7 @@ Iterables include sequence values such as strings and tuples, as well as other c
 
 Even unordered collections such as **dictionaries** must define an ordering over their contents when they produce iterators.
 
-<img src="image/image-20241204213124389.png" alt="image-20241204213124389" style="zoom:50%;" />
+<img src="images/image-20241204213124389.png" alt="image-20241204213124389" style="zoom:50%;" />
 
 
 
@@ -1203,7 +1203,7 @@ equal
 
  Many built-in Python sequence operations return iterators that compute results lazily
 
-<img src="image/image-20241204213455594.png" alt="image-20241204213455594" style="zoom: 50%;" />
+<img src="images/image-20241204213455594.png" alt="image-20241204213455594" style="zoom: 50%;" />
 
 
 
@@ -1225,7 +1225,7 @@ When a generator function is called, it returns a generator that iterates over i
 
  A yield from statement yields all values from an iterator or iterable (Python 3.3)
 
-<img src="image/image-20241204213644045.png" alt="image-20241204213644045" style="zoom: 67%;" />
+<img src="images/image-20241204213644045.png" alt="image-20241204213644045" style="zoom: 67%;" />
 
 
 
