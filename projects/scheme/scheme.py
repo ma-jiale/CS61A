@@ -73,14 +73,20 @@ def eval_all(expressions, env):
     2
     """
     # BEGIN PROBLEM 7
-    curr = expressions
-    result = None
-    while not curr is nil:
-        if curr.rest is nil:
-            return scheme_eval(curr.first, env, tail=True)
-        result = scheme_eval(curr.first, env) # replace this with lines of your own code
-        curr = curr.rest
-    return result
+    # curr = expressions
+    # result = None
+    # while not curr is nil:
+    #     if curr.rest is nil:
+    #         return scheme_eval(curr.first, env, tail=True)
+    #     result = scheme_eval(curr.first, env) # replace this with lines of your own code
+    #     curr = curr.rest
+    # return result
+    if expressions is nil:
+        return 
+    if expressions.rest is nil:
+        return scheme_eval(expressions.first, env, tail=True)
+    scheme_eval(expressions.first, env)
+    return eval_all(expressions.rest, env)
     # END PROBLEM 7
 
 ################
@@ -356,7 +362,7 @@ def do_and_form(expressions, env):
     value = True
     while not curr is nil:
         if curr.rest is nil:
-            return scheme_eval(curr.first, env)
+            return scheme_eval(curr.first, env, tail=True)
         value = scheme_eval(curr.first, env)
         if is_false_primitive(value):
             return value
@@ -383,7 +389,7 @@ def do_or_form(expressions, env):
     value = False
     while not curr is nil:
         if curr.rest is nil:
-            return scheme_eval(curr.first, env, True)
+            return scheme_eval(curr.first, env, tail=True)
         value = scheme_eval(curr.first, env)
         if is_true_primitive(value):
             return value
