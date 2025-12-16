@@ -2587,3 +2587,206 @@ select weight/legs, count(*) from animals group by weight/legs having count(*)>1
 distinct
 
 The `distinct` keyword ensures that no repeated values in a column are included in the aggregation.
+
+
+
+## Lecture 34.  Databases
+
+### Create Table
+
+CREATE TABLE expression syntax:
+
+![image-20251209163221133](images/image-20251209163221133.png)
+
+column-def & column-constraint:
+
+![image-20251209163323864](images/image-20251209163323864.png)
+
+Examples using column-def to create table
+
+```sql
+CREATE TABLE numbers (n, note); 
+CREATE TABLE numbers (n UNIQUE, note); 
+CREATE TABLE numbers (n, note DEFAULT "No comment");
+```
+
+
+
+### Drop Table
+
+![image-20251209163552660](images/image-20251209163552660.png)
+
+
+
+### Modifying Tables
+
+Insert
+
+![image-20251209163633931](images/image-20251209163633931.png)
+
+For a table t with two columns...To insert into one column:
+
+```
+INSERT INTO t(column) VALUES (value);
+```
+
+To insert into both columns:
+
+```
+INSERT INTO t VALUES (value0, value1);
+```
+
+Update
+
+![image-20251209164611249](images/image-20251209164611249.png)
+
+Update sets all entries in certain columns to new values, just for some subset of rows.
+
+Delete
+
+![image-20251209165232087](images/image-20251209165232087.png)
+
+Delete removes some or all rows from a table.
+
+
+
+### Python and SQL
+
+demo
+
+
+
+## Lecture 35.  Tail Calls
+
+### Dynamic Scope
+
+**Lexical scope**: The parent of a frame is the environment in which a procedure was defined 
+**Dynamic scope**: The parent of a frame is the environment in which a procedure was called
+
+The way in which names are looked up in Scheme and Python is called lexical scope   (or static scope) 
+
+A case of **Dynamic scope**:
+
+![image-20251216095510471](images/image-20251216095510471.png)
+
+
+
+### Functional Programming
+
+**Definition**
+
+- All functions are pure functions  
+- No re-assignment and no mutable data types  
+- Name-value bindings are permanent
+
+**Advantages of functional programming**
+
+- The value of an expression is independent of the order in which sub-expressions are  evaluated
+- Sub-expressions can safely be evaluated in parallel or only on demand (lazily)  
+- Referential transparency: The value of an expression does not change when we substitute  one of its subexpression with the value of that subexpression
+
+
+
+### Recursion and Iteration in Python
+
+In Python, recursive calls always create new active frames, so Recursion use linear space but Iteration just use constant space in the case blow
+
+![image-20251216100149209](images/image-20251216100149209.png)
+
+
+
+### Tail Recursion
+
+From the Revised Report on the Algorithmic Language Scheme:
+
+"Implementations of Scheme are required to be properly tail-recursive. This allows the  execution of an iterative computation in constant space, even if the iterative  computation is described by a syntactically recursive procedure."
+
+
+
+### Tail Calls
+
+![image-20251216100337408](images/image-20251216100337408.png)
+
+
+
+**Eval with Tail Call Optimization**
+
+The return value of the tail call is the return value of the current procedure call 
+
+Therefore, tail calls shouldn't increase the environment size
+
+see the elegant case in the scheme project
+
+
+
+### Map and Reduce
+
+**Example: Reduce**
+
+```scheme
+(define (reduce procedure s start) 
+	(if (null? s) 
+        start
+        (reduce procedure 
+                (cdr s)
+                (procedure start (car s))
+         )
+     )
+)
+```
+
+Recursive call is a tail call, space depends on what procedure requires
+
+
+
+### Example: Map with Only a Constant Number of Frames
+
+![image-20251216105416779](images/image-20251216105416779.png)
+
+
+
+### General Computing Machines
+
+**An Analogy: Programs Define Machines**: Programs specify the logic of a computational device
+
+![image-20251216110003507](images/image-20251216110003507.png)
+
+**Interpreters are General Computing Machine**: An interpreter can be parameterized to simulate any machine
+
+![image-20251216110140920](images/image-20251216110140920.png)
+
+Our Scheme interpreter is a universal machine  
+
+A bridge between the data objects that are manipulated by our programming language and  the programming language itself  
+
+Internally, it is just a set of evaluation rules
+
+
+
+## Lecture 36. Macros
+
+**Macros Perform Code Transformations**
+
+A macro is an operation performed on the source code of a program before evaluation
+
+Scheme has a define-macro special form that defines a source code transformation
+
+```scheme
+(define-macro (twice expr)
+	(list 'begin expr expr)
+)
+```
+
+![image-20251216195323815](images/image-20251216195323815.png)
+
+**Evaluation procedure of a macro call expression:**
+
+- Evaluate the operator sub-expression, which evaluates to a macro  
+- Call the macro procedure on the operand expressions without evaluating them first  
+- Evaluate the expression returned from the macro procedure
+
+
+
+### Implementing Macros
+
+see it in Scheme project
