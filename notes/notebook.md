@@ -2790,3 +2790,11 @@ Scheme has a define-macro special form that defines a source code transformation
 ### Implementing Macros
 
 see it in Scheme project
+
+
+
+## Lecture 37. Final Examples
+
+### How to Design Programs
+
+![image-20251219111143111](images/image-20251219111143111.png)
