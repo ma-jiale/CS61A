@@ -1,0 +1,13 @@
+(define (deep-map fn lst)
+    (if (null? lst)
+        nil
+    (if (list? (car lst))
+        (cons (deep-map fn (car lst)) (deep-map fn (cdr lst)))
+        (cons (fn (car lst)) (deep-map fn (cdr lst)))
+    )
+    )  
+)
+; scm> (deep-map (lambda (x) (* x x)) '(1 2 3))
+; (1 4 9)
+; scm> (deep-map (lambda (x) (* x x)) '(1 ((4) 5) 9))
+; (1 ((16) 25) 81)
