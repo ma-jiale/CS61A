@@ -18,7 +18,7 @@
 
 [Lecture](https://www.bilibili.com/video/BV1s3411G7yM/?p=1&vd_source=bf08880c4c4d8fdcca4d17ed2ee821fe) -- 最完整的带英文字幕的Lecture合集
 
-[half-dreamer](https://github.com/half-dreamer/CS61A-20fa/tree/main/CS61A 2020 FALL all-solution) -- 作者提供了 Fall 2020 习题和solution的备份。
+[half-dreamer](https://github.com/half-dreamer/CS61A-20fa/tree/main/CS61A%202020%20FALL%20all-solution) -- 作者提供了 Fall 2020 习题和solution的备份。
 
 ## 3.后记
 
